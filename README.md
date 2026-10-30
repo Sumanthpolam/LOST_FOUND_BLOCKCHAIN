@@ -23,6 +23,12 @@ npm run dev
 
 Open http://localhost:5173. API defaults to http://localhost:5000/api (override with `VITE_API_URL`). SQLite creates `backend/findchain.db` automatically.
 
+## Publish the frontend on GitHub Pages
+
+The included GitHub Actions workflow builds `frontend/` and publishes the app at `https://sumanthpolam.github.io/LOST_FOUND_BLOCKCHAIN/`. Push the project changes to the `main` branch, then in GitHub open **Settings → Pages** and select **GitHub Actions** as the build and deployment source. The app uses hash-based routes so refreshing a nested screen works on Pages.
+
+GitHub Pages cannot run Flask or SQLite. To use API-backed features on the public site, first host the Flask API and set the repository variable **Settings → Secrets and variables → Actions → Variables → New repository variable**, named `VITE_API_URL`, to the deployed API base URL ending in `/api` (for example `https://your-api-host.example/api`). Without that backend, the static frontend can load, but login, reports, claims, and live statistics cannot work. Do not put API secrets in a `VITE_*` variable.
+
 ## Demo accounts
 
 - User: `demo@findchain.local` / `FindChain123!`
